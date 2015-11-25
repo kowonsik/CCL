@@ -25,3 +25,18 @@
    http://127.0.0.1:8000
 
 ````
+
+### hello world
+
+````sh
+
+   #http://127.0.0.1:8000/app1/test/hello
+   
+   def hello():
+      return "hello"
+      
+   
+   def helloworld():
+      return "<html><body><h1>Hello World</h1><body></html>"
+
+````
