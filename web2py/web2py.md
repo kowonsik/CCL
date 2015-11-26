@@ -46,6 +46,34 @@
 
 ````
 
+### 기상청 페이지 크롤링하여 온도값을 web2py 활용하여 웹페이지 표시
+
+```sh
+
+#!/usr/bin/python
+# -*- coding: utf-8 -*- 
+
+import urllib2 # extensible library for opening URLs
+import time
+
+from lxml.html import parse, fromstring # processing XML and HTML
+
+# 인천 남구 용현동 기상상황 확인 url
+url = 'http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=2823759100'
+temp=[]
+
+def temp_process():
+        page = urllib2.urlopen(url).read()
+        xml= fromstring(page)
+
+        for  elt in xml.getiterator("temp"):    # getting temp tag 
+                temp_val = elt.text
+
+        return temp_val
+
+```
+
+
 ### openTSDB 연동하여 웹페이지 표시
 
 ```sh
