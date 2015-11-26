@@ -110,3 +110,77 @@ vim index.html
 
 
 ```
+
+### controller에서 value 넘기기
+
+```sh
+
+# cp /usr/local/app1/ /usr/local/app2 -rf
+# cd /usr/local/app2/controllers
+# vim defalut.py
+# 기존 코드를 삭제 하고 아래 내용을 defalut.py 에 넣음
+```
+
+
+```sh
+
+#!/usr/bin/python
+# -*- coding: utf-8 -*- 
+
+import urllib2 # extensible library for opening URLs
+import time
+
+from lxml.html import parse, fromstring # processing XML and HTML
+
+# 인천 남구 용현동 기상상황 확인 url
+url = 'http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=2823759100'
+temp=[]
+
+def index():
+        page = urllib2.urlopen(url).read()
+        xml= fromstring(page)
+
+        for  elt in xml.getiterator("temp"):    # getting temp tag 
+                temp_val = elt.text
+
+        return locals()
+
+```
+
+```sh
+
+# cd ..
+# cd views/default
+# vim index.html
+# index.html 내 코드를 모드 삭제하고 아래 코드 입력
+
+```
+
+```sh
+
+<!DOCTYPE html>
+<html>
+        <head>
+                <meta charset="utf-8" http-equiv="Refresh" content="600">
+                <title> Test </title>
+        </head>
+
+        <body>
+                <div class="container">
+                        <div id="development-header" class="page-header">
+                                <h1>Development</h1>
+                        </div>
+
+                        <div class="caption">
+                                <h3> temperature</h3>
+                                <p>
+                                {{=temp_val}}
+                                </p>
+                        </div>
+                </div>
+
+        </body>
+</html>
+
+
+```
