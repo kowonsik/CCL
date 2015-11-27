@@ -315,6 +315,7 @@ tar xvfz pyserial-2.7.tar.gz
 cd pyserial-2.7
 python setup.py install
 
+vim serial_to_openTSDB.py
 ```
 
 ```sh
