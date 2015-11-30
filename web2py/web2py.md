@@ -190,3 +190,59 @@ def index():
 # http://127.0.0.1:8000/app2
 
 ```
+
+### api 제작
+
+```sh
+
+# 사전작업으로 temperature 데이터를 임의로 넣음
+# (0, 10, 20, 30, 40, 50, 60 반복)
+
+```
+
+```sh
+
+#!/usr/bin/python
+# -*- coding: utf-8 -*- 
+
+import sys
+import urllib2
+import time
+from datetime import datetime, timedelta
+import json
+import requests
+
+
+url_local ="http://127.0.0.1:4242/api/put"
+
+def insert(value):
+        data={
+                "metric":"temperature",
+                "timestamp":time.time(),
+                "value":value,
+                "tags":{
+                        "host":"mypc"
+                }
+        }
+        ret = requests.post(url_local, data=json.dumps(data))
+        time.sleep(1)
+
+
+if __name__ == '__main__':
+        while 1 :
+                t = time.localtime()
+                tsec = t.tm_sec
+
+                if tsec%10!=0:
+                        print tsec
+                        time.sleep(0.99)
+                else :
+                        try:
+                                insert(tsec)
+                                print tsec
+                                time.sleep(0.99)
+                        except:
+                                print "error"
+                                time.sleep(0.99)
+
+```
