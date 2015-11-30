@@ -100,7 +100,7 @@ vim index.html
                         </div>
 
                         <div class="caption">
-                                <h3>미세먼지 수치</h3>
+                                <h3>온도</h3>
                         </div>
                 </div>
 
