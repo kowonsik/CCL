@@ -192,6 +192,7 @@ def index():
 ```
 
 ### api 제작
+#### 임의의 데이터를 openTSDB에 저장 
 
 ```sh
 
@@ -215,13 +216,13 @@ import requests
 
 url_local ="http://127.0.0.1:4242/api/put"
 
-def insert(value):
+def insert(value, id):
         data={
                 "metric":"temperature",
                 "timestamp":time.time(),
                 "value":value,
                 "tags":{
-                        "host":"mypc"
+                        "nodeid":id
                 }
         }
         ret = requests.post(url_local, data=json.dumps(data))
@@ -238,7 +239,8 @@ if __name__ == '__main__':
                         time.sleep(0.99)
                 else :
                         try:
-                                insert(tsec)
+                                insert(tsec, 1)
+                                insert(tsec+5, 2)
                                 print tsec
                                 time.sleep(0.99)
                         except:
@@ -297,5 +299,13 @@ def test():
                         
         return max_Value
 
+```
+
+#### max 값 구하는 api 만들기
+
+```sh
+
 
 ```
+
+#### min 값 구하는 api 만들기 연습
