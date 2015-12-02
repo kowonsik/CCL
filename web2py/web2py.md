@@ -246,3 +246,56 @@ if __name__ == '__main__':
                                 time.sleep(0.99)
 
 ```
+
+#### max 값 구하기
+
+```sh
+
+# 사용할 어플리케이션 복사
+# cp /usr/local/web2py/applications/app1 /usr/local/web2py/applications/min -rf
+# cd /usr/local/web2py/applications/min/controllers
+# vim test.py
+```
+
+```sh
+
+# -*- coding: utf-8 -*-
+
+import datetime
+import urllib2
+import json
+import time
+
+
+#url = "http://125.7.128.53:4242/api/query?start="+param_start+"&end="+param_end+"&m=sum:"+param_metric+"%7Bnodeid="+param_id+"%7D"
+url = "http://125.7.128.53:4242/api/query?start=2015/11/30-22:45:00&end=2015/11/30-22:49:53&m=sum:gyu_RC1_thl.temperature%7Bnodeid=2454%7D&o=&yrange=%5B0:%5D&wxh=772x734"
+
+def test():
+        max_Value = 0
+        param = request.vars['id']
+
+        url_lib=urllib2.urlopen(url)
+        url_data=url_lib.read()
+
+        Data=json.loads(url_data)
+        strip_data=str(Data[0]["dps"])
+
+        #print strip_data
+
+        strip_data = strip_data.replace('u' , '')
+        strip_data = strip_data.replace('{' , '')
+        strip_data = strip_data.replace("'" , '')
+        strip_data = strip_data.replace('}' , '')
+        strip_data = strip_data.split(',')
+
+        for i in range(0, len(strip_data)-1) :
+                arr_data = strip_data[i].split(':')
+                arr_Value = arr_data[1].strip()
+
+                if float(arr_Value) > float(max_Value):
+                        max_Value = arr_Value
+                        
+        return max_Value
+
+
+```
