@@ -1,6 +1,6 @@
 
 ### api 제작
-   임의의 데이터를 openTSDB에 저장 
+   - 임의의 데이터를 openTSDB에 저장 
 
 ```sh
 
@@ -119,15 +119,14 @@ def test():
         
 ```
 
-###### http://127.0.0.1:8000/max/test/test
-
+   - http://127.0.0.1:8000/max/test/test
 
 ### max 값 구하는 api 만들기
 
 
-##### id 에 따라 max값(최대값) 불러오는 api
-###### http://127.0.0.1:8000/max/test?id=1
-###### http://127.0.0.1:8000/max/test?id=2
+   - id 에 따라 max값(최대값) 불러오는 api
+   - http://127.0.0.1:8000/max/test?id=1
+   - http://127.0.0.1:8000/max/test?id=2
 
 ```sh
 # metric은 temperature
@@ -195,4 +194,4 @@ def test():
 ```
 
 #### [연습] min 값 구하는 api 만들기
-##### [연습] id 에 따라 min값(최소값) 불러오는 api
+   - id 에 따라 min값(최소값) 불러오는 api
