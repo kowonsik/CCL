@@ -311,11 +311,8 @@ def test():
         
 ```
 
-```sh
+###### http://127.0.0.1:8000/max/test/test
 
-# http://127.0.0.1:8000/max/test/test
-
-```
 
 #### max 값 구하는 api 만들기
 ##### id 에 따라 max값(최대값) 불러오는 api
@@ -387,5 +384,5 @@ def test():
 
 ```
 
-#### min 값 구하는 api 만들기 연습
-##### id 에 따라 min값(최소값) 불러오는 api
+#### [연습] min 값 구하는 api 만들기
+##### [연습] id 에 따라 min값(최소값) 불러오는 api
