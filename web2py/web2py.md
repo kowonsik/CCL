@@ -47,18 +47,16 @@
 ```
 
 ### MVC 패턴 연습(model, view, controller)
-
+   - model
 ```sh
-# model
 # vim /usr/local/web2py/applications/app1/models/test.py
 ```
 
 ```sh
-
 aaa = 111
-
 ```
 
+   - controller
 ```sh
 # vim /usr/local/web2py/applications/app1/controllers/default.py
 ```
@@ -69,12 +67,12 @@ def index():
         return locals()
 ```
 
+   - view
 ```sh
 # vim /usr/local/web2py/applications/app1/views/default/index.html
 ```
 
 ```sh
-
 <!DOCTYPE html>
 
 <html>
@@ -90,10 +88,8 @@ def index():
         </body>
 
 </html>
-
-
 ```
-
+   - http://127.0.0.1:8000/app1
 
 ### 기상청 페이지 크롤링하여 온도값을 web2py 활용하여 웹페이지 표시
 
