@@ -197,7 +197,9 @@ def index():
 ```sh
 
 # 사전작업으로 temperature 데이터를 임의로 넣음
-# (0, 10, 20, 30, 40, 50, 60 반복)
+# matric : temperature
+# tag : id = 1, 2
+# value : 0, 10, 20, 30, 40, 50, 60 반복
 
 ```
 
@@ -254,9 +256,13 @@ if __name__ == '__main__':
 ```sh
 
 # 사용할 어플리케이션 복사
-# cp /usr/local/web2py/applications/app1 /usr/local/web2py/applications/min -rf
-# cd /usr/local/web2py/applications/min/controllers
+# cp /usr/local/web2py/applications/app1 /usr/local/web2py/applications/max -rf
+# cd /usr/local/web2py/applications/max/controllers
 # vim test.py
+
+# metric : temperature
+# tag : id
+# id : 1
 ```
 
 ```sh
@@ -268,36 +274,46 @@ import urllib2
 import json
 import time
 
+url = "http://127.0.0.1:4242/api/query?start=1m-ago&m=sum:temperature%7Bid=1%7D&o=&yrange=%5B0:%5D&key=out%20bottom%20center%20box&wxh=740x345&autoreload=15"
 
-#url = "http://125.7.128.53:4242/api/query?start="+param_start+"&end="+param_end+"&m=sum:"+param_metric+"%7Bnodeid="+param_id+"%7D"
-url = "http://125.7.128.53:4242/api/query?start=2015/11/30-22:45:00&end=2015/11/30-22:49:53&m=sum:gyu_RC1_thl.temperature%7Bnodeid=2454%7D&o=&yrange=%5B0:%5D&wxh=772x734"
+def make_data(raw_data):
+        max_val = 0
+
+        tmp_data = raw_data.replace('u' , '')
+        tmp_data = raw_data.replace('{' , '')
+        tmp_data = raw_data.replace("'" , '')
+        tmp_data = raw_data.replace('}' , '')
+        tmp_data = raw_data.split(',')
+
+        for i in range(0, len(tmp_data)-1) :
+                arr_data = tmp_data[i].split(':')
+                arr_Time = arr_data[0].strip()
+                arr_Value = arr_data[1].strip()
+
+                if float(arr_Value) > float(max_val):
+                        max_val = arr_Value
+        return max_val
 
 def test():
-        max_Value = 0
+        max_value = 0
+        max_time = 0
         param = request.vars['id']
 
         url_lib=urllib2.urlopen(url)
         url_data=url_lib.read()
 
         Data=json.loads(url_data)
-        strip_data=str(Data[0]["dps"])
 
-        #print strip_data
+        raw_data=str(Data[0]["dps"])
+        result_max_val = make_data(raw_data)
 
-        strip_data = strip_data.replace('u' , '')
-        strip_data = strip_data.replace('{' , '')
-        strip_data = strip_data.replace("'" , '')
-        strip_data = strip_data.replace('}' , '')
-        strip_data = strip_data.split(',')
+        return result_max_val
+        
+```
 
-        for i in range(0, len(strip_data)-1) :
-                arr_data = strip_data[i].split(':')
-                arr_Value = arr_data[1].strip()
+```sh
 
-                if float(arr_Value) > float(max_Value):
-                        max_Value = arr_Value
-                        
-        return max_Value
+# http://127.0.0.1:8000/max/test/test
 
 ```
 
