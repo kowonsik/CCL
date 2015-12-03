@@ -44,7 +44,56 @@
 
    # http://127.0.0.1:8000/app1/test/helloworld
 
-````
+```
+
+### MVC 패턴 연습(model, view, controller)
+
+```sh
+# model
+# vim /usr/local/web2py/applications/app1/models/test.py
+```
+
+```sh
+
+aaa = 111
+
+```
+
+```sh
+# vim /usr/local/web2py/applications/app1/controllers/default.py
+```
+
+```sh
+def index():
+        bbb = aaa +1
+        return locals()
+```
+
+```sh
+# vim /usr/local/web2py/applications/app1/views/default/index.html
+```
+
+```sh
+
+<!DOCTYPE html>
+
+<html>
+        <head>
+                <meta charset="utf-8" http-equiv="Refresh" content="600">
+                <title> Test </title>
+        </head>
+
+        <body>
+                <h1>Test</h1>
+                {{=bbb}}
+
+        </body>
+
+</html>
+
+
+```
+
 
 ### 기상청 페이지 크롤링하여 온도값을 web2py 활용하여 웹페이지 표시
 
