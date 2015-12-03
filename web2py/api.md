@@ -1,6 +1,6 @@
 
 ### api 제작
-#### 임의의 데이터를 openTSDB에 저장 
+   임의의 데이터를 openTSDB에 저장 
 
 ```sh
 
