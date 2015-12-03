@@ -122,7 +122,9 @@ def test():
 ###### http://127.0.0.1:8000/max/test/test
 
 
-#### max 값 구하는 api 만들기
+### max 값 구하는 api 만들기
+
+
 ##### id 에 따라 max값(최대값) 불러오는 api
 ###### http://127.0.0.1:8000/max/test?id=1
 ###### http://127.0.0.1:8000/max/test?id=2
