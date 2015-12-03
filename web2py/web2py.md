@@ -309,6 +309,8 @@ def test():
 ```sh
 # metric은 temperature
 # tag는 id
+# 아래 링크에 코딩
+# vim /usr/local/web2py/applications/max/controls/test.py
 ```
 
 ```sh
